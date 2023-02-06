@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.conf import settings
 from groups.models import Group
 from django.contrib.auth import get_user_model
+import misaka
 
 User = get_user_model()
 
@@ -20,7 +21,7 @@ class Post(models.Mode):
         return self.message
     
     def save(self, *args, **kwargs):
-        self.message_html = self.message
+        self.message_html = misaka.html(self.message)
         super().save(*args, **kwargs)
 
     
