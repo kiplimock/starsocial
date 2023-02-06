@@ -26,7 +26,7 @@ class UserPosts(generic.ListView):
 
     def get_queryset(self):
         try:
-            self.post.user = User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
+            self.post_user = User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
         except User.DoesNotExist:
             raise Http404
         else:
@@ -48,7 +48,7 @@ class PostDetail(SelectRelatedMixin, generic.DetailView):
 class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 
     fields = ('message', 'group')
-    models = models.Post
+    model = models.Post
 
     def form_valid(self, form):
         self.object = form.save(commit=False)

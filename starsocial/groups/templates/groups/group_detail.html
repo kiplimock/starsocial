@@ -19,7 +19,7 @@
     </div>
 {% endblock pregroup %}
 
-{% block content %}
+{% block group_content %}
     <div class="col-md-8">
         {% if group.posts.count == 0 %}
             <h2>No posts in this group yet!</h2>
@@ -30,4 +30,4 @@
             {% endfor %}
         {% endif %}
     </div>
-{% endblock content %}
+{% endblock group_content %}
